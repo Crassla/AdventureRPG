@@ -4,7 +4,7 @@
  */
 package RPG.MainMethod;
 
-import RPG.RunGame.RunGame;
+import RPG.GUI.GUISetup;
 
 /**
  *
@@ -14,6 +14,6 @@ public class SetupGame
 {
     public static void main(String[] args)
     {
-        RunGame.runGame();
+        GUISetup frame = new GUISetup();
     }
 }
