@@ -2,12 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package RPG.MainMethod;
+package RPG.RunGame;
 
 import RPG.GameSetup.Game;
-import RPG.RunGame.Encounter;
-import RPG.RunGame.EndGame;
-import RPG.RunGame.StartGame;
 import RPG.UserInput.ParseInput;
 
 /**
@@ -18,7 +15,7 @@ import RPG.UserInput.ParseInput;
  */
 public class RunGame
 {
-    public static void main(String[] args)
+    public static void runGame()
     {   
         //sets runGame to true when the program is first run
         boolean runGame = true;

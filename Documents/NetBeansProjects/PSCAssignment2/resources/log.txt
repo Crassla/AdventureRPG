@@ -32,3 +32,4 @@ Tue Apr 12 20:03:06 NZST 2022 (log): attack
 Tue Apr 12 20:03:08 NZST 2022 (log): attack
 Tue Apr 12 20:03:11 NZST 2022 (log): Do you want to save (y/n): y
 Tue Apr 12 20:03:13 NZST 2022 (log): Do you wish to play again (y/n): n
+Tue Apr 26 19:41:00 NZST 2022 (log): Do you wish to view the game instructions (y/n): y
