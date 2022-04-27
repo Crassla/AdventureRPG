@@ -38,6 +38,7 @@ public class GameSave
     //returns null if playerName not found;
     public Game findSavedGame(String playerName)
     {
+        playerName = playerName.toLowerCase();
 
         if (gameList == null || gameList.isEmpty()) //checks to see if the list is empty or null and if it is throws an error
         {

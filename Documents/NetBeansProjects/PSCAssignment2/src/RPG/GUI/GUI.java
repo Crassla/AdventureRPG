@@ -8,7 +8,6 @@ import java.awt.Color;
 import java.awt.Container;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -20,13 +19,13 @@ public class GUI
 
     private final JFrame frame;
     private final GamePanels panelGenerator;
-    private Container container;
-    private JPanel titlePanel, startButtonPanel, gamePanel;
-    private JTextField mainTextField;
+    private final Container container;
+    private JPanel titlePanel, startButtonPanel, gamePanel, loadPanel, loadTextPanel, newGamePanel;
+    private JTextField mainTextField, loadTextField;
 
     public GUI()
     {
-       frame = new JFrame();
+        frame = new JFrame();
         panelGenerator = new GamePanels(this);
 
         frame.setSize(800, 600);
@@ -44,36 +43,62 @@ public class GUI
 
         container.add(titlePanel);
         container.add(startButtonPanel);
-        
+
         frame.setVisible(true);
     }
-    
+
     private void removeTitleScreen()
     {
         titlePanel.setVisible(false);
         startButtonPanel.setVisible(false);
-        
+
         frame.validate();
         frame.repaint();
     }
 
     public void setGameScreen()
     {
-        removeTitleScreen();
-       
         gamePanel = panelGenerator.gamePanel();
         mainTextField = panelGenerator.mainTextField();
-        
+
         gamePanel.add(mainTextField);
-        
+
         container.add(gamePanel);
+
+        frame.validate();
+        frame.repaint();
+    }
+
+    public void setLoadScreen()
+    {
+        removeTitleScreen();
+
+        loadPanel = panelGenerator.loadGamePanel();
+        loadTextPanel = panelGenerator.loadGameTextPanel();
+
+        loadTextField = panelGenerator.loadTextField();
+
+        loadTextPanel.add(loadTextField);
+        
+        container.add(loadPanel);
+        container.add(loadTextPanel);
         
         frame.validate();
         frame.repaint();
     }
 
+    public void setNewGameScreen()
+    {
+
+    }
+
     public void updateGameTextArea(String text)
     {
         mainTextField.setText(text);
+    }
+    
+    public String getLoadTextField()
+    {
+        return loadTextField.getText();
     }
 }

@@ -7,7 +7,6 @@ package RPG.RunGame;
 import RPG.FileIO.GameSave;
 import RPG.GUI.GUI;
 import RPG.GameSetup.Game;
-import RPG.UserInput.ParseInput;
 
 /**
  *
@@ -35,7 +34,16 @@ public class StartGame
     //load the game into a previous save
     public void loadGame()
     {
-        gui.setGameScreen();
-        gui.updateGameTextArea("LOADING PREVIOUS CHARACTER");
+        gui.setLoadScreen();
+    }
+    
+    public boolean validateLoadInput(String text)
+    {
+        GameSave gameSave = new GameSave();
+        Game game;
+        
+        game = gameSave.findSavedGame(text);
+        
+        return (game == null);
     }
 }

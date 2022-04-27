@@ -49,4 +49,18 @@ public class Handlers
 
         return listener;
     }
+    
+    public ActionListener loadGameTextFieldHandler()
+    {
+        ActionListener listener = new ActionListener()
+        {
+            public void actionPerformed(ActionEvent event)
+            {
+                StartGame startGame = new StartGame(gui);
+                System.out.println(startGame.validateLoadInput(gui.getLoadTextField()));
+            }
+        };
+
+        return listener;
+    }
 }
