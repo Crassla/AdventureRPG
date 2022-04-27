@@ -4,7 +4,7 @@
  */
 package RPG.GUI;
 
-import RPG.RunGame.RunGame;
+import RPG.RunGame.StartGame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,16 +14,39 @@ import java.awt.event.ActionListener;
  */
 public class Handlers
 {
-    public ActionListener titalHandler()
+
+    private GUI gui;
+
+    public Handlers(GUI gui)
+    {
+        this.gui = gui;
+    }
+
+    public ActionListener newGameHandler()
     {
         ActionListener listener = new ActionListener()
         {
             public void actionPerformed(ActionEvent event)
             {
-                RunGame.runGame();
+                StartGame startGame = new StartGame(gui);
+                startGame.newGame();
             }
         };
-        
+
+        return listener;
+    }
+
+    public ActionListener loadGameHandler()
+    {
+        ActionListener listener = new ActionListener()
+        {
+            public void actionPerformed(ActionEvent event)
+            {
+                StartGame startGame = new StartGame(gui);
+                startGame.loadGame();
+            }
+        };
+
         return listener;
     }
 }

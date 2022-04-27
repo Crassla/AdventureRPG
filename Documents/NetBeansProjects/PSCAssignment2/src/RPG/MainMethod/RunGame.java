@@ -4,16 +4,20 @@
  */
 package RPG.MainMethod;
 
-import RPG.GUI.GUISetup;
+import RPG.GUI.GUI;
+
 
 /**
  *
  * @author alex
+ * 
+ * This class contains the main method for the game
  */
-public class SetupGame
+public class RunGame
 {
-    public static void main(String[] args)
-    {
-        GUISetup frame = new GUISetup();
+    public static void main(String args[])
+    {   
+        GUI gui = new GUI();
+        gui.setTitleScreen();
     }
 }
