@@ -4,6 +4,7 @@
  */
 package RPG.GUI;
 
+import RPG.GameSetup.Game;
 import RPG.RunGame.StartGame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -57,7 +58,15 @@ public class Handlers
             public void actionPerformed(ActionEvent event)
             {
                 StartGame startGame = new StartGame(gui);
-                System.out.println(startGame.validateLoadInput(gui.getLoadTextField()));
+                Game game = startGame.validateLoadInput(gui.getLoadTextField());
+                if (game == null)
+                {
+                    gui.updateErrorLabel("Error: No save by the name " + gui.getLoadTextField() + " found!");
+                }
+                else
+                {
+                    gui.setGameScreen();
+                }
             }
         };
 

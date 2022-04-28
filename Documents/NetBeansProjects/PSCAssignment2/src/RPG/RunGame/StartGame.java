@@ -28,7 +28,7 @@ public class StartGame
     public void newGame()
     {
         gui.setGameScreen();
-        gui.updateGameTextArea("CREATING NEW GAME");
+        gui.updateMainLabel("CREATING NEW GAME");
     }
 
     //load the game into a previous save
@@ -37,13 +37,13 @@ public class StartGame
         gui.setLoadScreen();
     }
     
-    public boolean validateLoadInput(String text)
+    public Game validateLoadInput(String text)
     {
         GameSave gameSave = new GameSave();
         Game game;
         
         game = gameSave.findSavedGame(text);
         
-        return (game == null);
+        return game;
     }
 }
