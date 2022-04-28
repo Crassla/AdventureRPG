@@ -42,7 +42,6 @@ public class GameSave
 
         if (gameList == null || gameList.isEmpty()) //checks to see if the list is empty or null and if it is throws an error
         {
-            System.out.println("No saves have been made");
             return null;
         }
         else
@@ -69,7 +68,6 @@ public class GameSave
             }
         }
 
-        System.out.println(playerName + " not found"); //if the player is not found it throws an error and returns null
         return null;
     }
     

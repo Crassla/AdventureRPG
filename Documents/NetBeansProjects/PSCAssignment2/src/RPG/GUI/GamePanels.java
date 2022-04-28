@@ -127,6 +127,15 @@ public class GamePanels
 
         return gamePanel;
     }
+    
+    public JPanel errorPanel()
+    {
+        JPanel gamePanel = new JPanel();
+        gamePanel.setBounds(100, 350, 600, 250);
+        gamePanel.setBackground(Color.black);
+
+        return gamePanel;
+    }
 
     public JTextField mainTextField()
     {
@@ -138,5 +147,27 @@ public class GamePanels
         gameTextArea.setBorder(null);
 
         return gameTextArea;
+    }
+    
+    public JLabel errorLabel()
+    {
+        JLabel label = new JLabel();
+        label.setBackground(Color.black);
+        label.setForeground(Color.red);
+        label.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        label.setBorder(null);
+
+        return label;
+    }
+    
+    public JLabel mainLabel()
+    {
+        JLabel label = new JLabel();
+        label.setBackground(Color.black);
+        label.setForeground(Color.white);
+        label.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        label.setBorder(null);
+
+        return label;
     }
 }
