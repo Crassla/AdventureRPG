@@ -27,8 +27,7 @@ public class StartGame
     //creates a new game object for the user
     public void newGame()
     {
-        gui.setGameScreen();
-        gui.updateMainLabel("CREATING NEW GAME");
+        gui.setNewGameScreen();
     }
 
     //load the game into a previous save
