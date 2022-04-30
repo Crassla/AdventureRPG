@@ -8,7 +8,9 @@ import java.awt.Color;
 import java.awt.Container;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
 /**
@@ -21,9 +23,11 @@ public class GUI
     private final JFrame frame;
     private final GamePanels panelGenerator;
     private final Container container;
-    private JPanel titlePanel, startButtonPanel, gamePanel, loadPanel, loadTextPanel, errorPanel, newGamePanel;
+    private JPanel titlePanel, startButtonPanel, gamePanel, loadPanel, loadTextPanel, errorPanel, newGamePanel, newGameList, newGameNumRooms;
     private JTextField loadTextField;
     private JLabel errorLabel, mainLabel;
+    private JList classList;
+    private JSpinner numRoomSpinner;
 
     public GUI()
     {
@@ -65,6 +69,8 @@ public class GUI
             loadTextPanel.setVisible(false);
         if (errorPanel != null)
             errorPanel.setVisible(false);
+        if (newGamePanel != null)
+            newGamePanel.setVisible(false);
 
         frame.validate();
         frame.repaint();
@@ -114,6 +120,23 @@ public class GUI
     public void setNewGameScreen()
     {
         removeCurrentScreen();
+        
+        newGamePanel = panelGenerator.newGamePanel();
+        newGameList = panelGenerator.newGameListPanel();
+        newGameNumRooms = panelGenerator.newGameNumRoomsPanel();
+        
+        classList = panelGenerator.classList();
+        numRoomSpinner = panelGenerator.NumRoomsSpinner();
+        
+        newGameList.add(classList);
+        newGameNumRooms.add(numRoomSpinner);
+        
+        container.add(newGamePanel);
+        container.add(newGameList);
+        container.add(newGameNumRooms);
+        
+        frame.validate();
+        frame.repaint();
     }
 
     public void updateMainLabel(String text)
