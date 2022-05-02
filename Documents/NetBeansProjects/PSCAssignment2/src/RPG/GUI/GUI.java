@@ -41,6 +41,8 @@ public class GUI
         frame.setLayout(null);
 
         container = frame.getContentPane();
+        
+        setTitleScreen();
     }
 
     private JPanel initPanel(JPanel panel)
