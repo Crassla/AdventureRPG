@@ -4,8 +4,9 @@
  */
 package RPG.GUI;
 
+import RPG.GUI.GUI;
+import RPG.GUI.Handlers;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
@@ -17,7 +18,6 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
@@ -66,13 +66,13 @@ public class GamePanels
         JButton startButton = new JButton("NEW GAME");
         startButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         startButton.setBackground(Color.black);
-        startButton.setForeground(Color.black);
+        startButton.setForeground(Color.white);
         startButton.setFocusPainted(false);
         startButton.setOpaque(true);
 
         JButton loadButton = new JButton("LOAD GAME");
         loadButton.setBackground(Color.black);
-        loadButton.setForeground(Color.black);
+        loadButton.setForeground(Color.white);
         loadButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         loadButton.setFocusPainted(false);
         loadButton.setOpaque(true);
@@ -132,10 +132,48 @@ public class GamePanels
     public JPanel newGameNumRoomsPanel()
     {
         JPanel gamePanel = new JPanel();
+
         gamePanel.setBounds(105, 325, 600, 250);
         gamePanel.setBackground(Color.black);
 
         return gamePanel;
+    }
+
+    public JPanel newGameUserNamePanel()
+    {
+        JPanel panel = new JPanel();
+
+        panel.setBounds(105, 400, 600, 250);
+        panel.setBackground(Color.black);
+
+        return panel;
+    }
+
+    public JPanel newGameEnterPanel()
+    {
+        JPanel panel = new JPanel();
+
+        panel.setBounds(100, 480, 600, 250);
+        panel.setBackground(Color.black);
+
+        Font font = new Font("Times New Roman", Font.BOLD, 20);
+
+        JButton button = new JButton("ENTER");
+
+        button.setBackground(Color.white);
+        button.setForeground(Color.black);
+        button.setFont(font);
+
+        button.addActionListener(handlerGenerator.createGameHandler());
+        
+        panel.add(button);
+        
+        button.setVisible(true);
+        panel.setVisible(true);
+        
+        panel.repaint();
+
+        return panel;
     }
 
     public JPanel loadGameTextPanel()
@@ -144,7 +182,7 @@ public class GamePanels
 
         JButton textButton = new JButton("ENTER");
         textButton.setBackground(Color.black);
-        textButton.setForeground(Color.black);
+        textButton.setForeground(Color.white);
         textButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         textButton.setFocusPainted(false);
 
@@ -156,19 +194,6 @@ public class GamePanels
         panel.add(textButton);
 
         return panel;
-    }
-
-    public JTextField loadTextField()
-    {
-        JTextField textField = new JTextField(20);
-        textField.setBounds(100, 500, 600, 250);
-        textField.setBackground(Color.white);
-        textField.setForeground(Color.black);
-        textField.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        textField.setText("Enter previous character name here");
-        textField.setBorder(BorderFactory.createLineBorder(Color.white, 3));
-
-        return textField;
     }
 
     public JPanel gamePanel()
@@ -187,6 +212,33 @@ public class GamePanels
         gamePanel.setBackground(Color.black);
 
         return gamePanel;
+    }
+
+    public JTextField loadTextField()
+    {
+        JTextField textField = new JTextField(20);
+        textField.setBounds(100, 500, 600, 250);
+        textField.setBackground(Color.white);
+        textField.setForeground(Color.black);
+        textField.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        textField.setText("Enter previous character name here");
+        textField.setBorder(BorderFactory.createLineBorder(Color.white, 3));
+
+        return textField;
+    }
+
+    public JTextField newGameTextField()
+    {
+        JTextField textField = new JTextField(20);
+        Font font = new Font("Times New Roman", Font.BOLD, 20);
+        textField.setBackground(Color.black);
+        textField.setForeground(Color.white);
+        textField.setFont(font);
+        Border border1 = BorderFactory.createLineBorder(Color.white);
+        TitledBorder border2 = BorderFactory.createTitledBorder(border1, "Enter character name here", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION, font, Color.white);
+        textField.setBorder(border2);
+
+        return textField;
     }
 
     public JLabel errorLabel()
@@ -242,11 +294,9 @@ public class GamePanels
         Font font = new Font("Times New Roman", Font.PLAIN, 20);
 
         JSpinner spinner = new JSpinner(new SpinnerNumberModel(1, 1, 20, 1));
-        spinner.getEditor().getComponent(0).setBackground(Color.black);
-        spinner.getEditor().getComponent(0).setBackground(Color.white);
-        spinner.getEditor().getComponent(0).setFont(font);
 
         JComponent editor = spinner.getEditor();
+
         JFormattedTextField tf = ((JSpinner.DefaultEditor) editor).getTextField();
         tf.setColumns(18);
         tf.setFont(font);

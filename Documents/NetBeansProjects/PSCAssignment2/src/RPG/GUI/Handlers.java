@@ -27,6 +27,7 @@ public class Handlers
     {
         ActionListener listener = new ActionListener()
         {
+            @Override
             public void actionPerformed(ActionEvent event)
             {
                 StartGame startGame = new StartGame(gui);
@@ -41,6 +42,7 @@ public class Handlers
     {
         ActionListener listener = new ActionListener()
         {
+            @Override
             public void actionPerformed(ActionEvent event)
             {
                 StartGame startGame = new StartGame(gui);
@@ -55,6 +57,7 @@ public class Handlers
     {
         ActionListener listener = new ActionListener()
         {
+            @Override
             public void actionPerformed(ActionEvent event)
             {
                 StartGame startGame = new StartGame(gui);
@@ -67,6 +70,21 @@ public class Handlers
                 {
                     gui.setGameScreen();
                 }
+            }
+        };
+
+        return listener;
+    }
+    
+    public ActionListener createGameHandler()
+    {
+        ActionListener listener = new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent event)
+            {
+                StartGame startGame = new StartGame(gui);
+                startGame.loadGame();
             }
         };
 
