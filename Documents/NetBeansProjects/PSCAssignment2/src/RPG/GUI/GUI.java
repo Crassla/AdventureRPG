@@ -103,7 +103,7 @@ public class GUI
         gameScreenPanel.add(panelGenerator.gamePanel());
         gameScreenPanel.add(mainLabel);
 
-        mainLabel.setText("LOADED INTO GAME");
+        mainLabel.setText("LOADING INTO GAME");
 
         container.add(gameScreenPanel);
 
