@@ -64,16 +64,18 @@ public class GamePanels
         panel.setBackground(Color.black);
 
         JButton startButton = new JButton("NEW GAME");
-        startButton.setBackground(Color.black);
-        startButton.setForeground(Color.white);
         startButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        startButton.setBackground(Color.black);
+        startButton.setForeground(Color.black);
         startButton.setFocusPainted(false);
+        startButton.setOpaque(true);
 
         JButton loadButton = new JButton("LOAD GAME");
         loadButton.setBackground(Color.black);
-        loadButton.setForeground(Color.white);
+        loadButton.setForeground(Color.black);
         loadButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         loadButton.setFocusPainted(false);
+        loadButton.setOpaque(true);
 
         startButton.addActionListener(handlerGenerator.newGameHandler());
         loadButton.addActionListener(handlerGenerator.loadGameHandler());
@@ -140,9 +142,9 @@ public class GamePanels
     {
         JPanel panel = new JPanel();
 
-        JButton textButton = new JButton("Enter previous name:");
+        JButton textButton = new JButton("ENTER");
         textButton.setBackground(Color.black);
-        textButton.setForeground(Color.white);
+        textButton.setForeground(Color.black);
         textButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         textButton.setFocusPainted(false);
 
@@ -160,9 +162,11 @@ public class GamePanels
     {
         JTextField textField = new JTextField(20);
         textField.setBounds(100, 500, 600, 250);
-        textField.setBackground(Color.black);
-        textField.setForeground(Color.white);
+        textField.setBackground(Color.white);
+        textField.setForeground(Color.black);
         textField.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        textField.setText("Enter previous character name here");
+        textField.setBorder(BorderFactory.createLineBorder(Color.white, 3));
 
         return textField;
     }

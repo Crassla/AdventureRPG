@@ -12,6 +12,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -40,19 +41,28 @@ public class GUI
         frame.setLayout(null);
 
         container = frame.getContentPane();
+        
+        setTitleScreen();
     }
 
     public void setTitleScreen()
     {
-        removeCurrentScreen();
-        
-        titlePanel = panelGenerator.titalPanel();
-        startButtonPanel = panelGenerator.startButtonPanel();
+        SwingUtilities.invokeLater(new Runnable() 
+        {
+            @Override
+            public void run()
+            {
+                removeCurrentScreen();
+                
+                titlePanel = panelGenerator.titalPanel();
+                startButtonPanel = panelGenerator.startButtonPanel();
 
-        container.add(titlePanel);
-        container.add(startButtonPanel);
+                container.add(titlePanel);
+                container.add(startButtonPanel);
 
-        frame.setVisible(true);
+                frame.setVisible(true);
+            }
+        });
     }
 
     private void removeCurrentScreen()
@@ -82,69 +92,98 @@ public class GUI
 
     public void setGameScreen()
     {
-        removeCurrentScreen();
+        SwingUtilities.invokeLater(new Runnable() 
+        {
+            @Override
+            public void run()
+            {
+                removeCurrentScreen();
         
-        gamePanel = panelGenerator.gamePanel();
-        mainLabel = panelGenerator.mainLabel();
+                gamePanel = panelGenerator.gamePanel();
+                mainLabel = panelGenerator.mainLabel();
 
-        gamePanel.add(mainLabel);
-        
-        mainLabel.setText("LOADED INTO GAME");
+                gamePanel.add(mainLabel);
 
-        container.add(gamePanel);
+                mainLabel.setText("LOADED INTO GAME");
 
-        frame.validate();
-        frame.repaint();
+                container.add(gamePanel);
+
+                frame.validate();
+                frame.repaint();
+            }
+        });
     }
 
     public void setLoadScreen()
     {
-        removeCurrentScreen();
+        SwingUtilities.invokeLater(new Runnable() 
+        {
+            @Override
+            public void run()
+            {
+                removeCurrentScreen();
 
-        loadPanel = panelGenerator.loadGamePanel();
-        errorPanel = panelGenerator.errorPanel();
-        loadTextPanel = panelGenerator.loadGameTextPanel();
+                loadPanel = panelGenerator.loadGamePanel();
+                errorPanel = panelGenerator.errorPanel();
+                loadTextPanel = panelGenerator.loadGameTextPanel();
 
-        loadTextField = panelGenerator.loadTextField();
-        
-        errorLabel = panelGenerator.errorLabel();
-        
-        errorPanel.add(errorLabel);
+                loadTextField = panelGenerator.loadTextField();
 
-        loadTextPanel.add(loadTextField);
-        
-        container.add(loadPanel);
-        container.add(loadTextPanel);
-        container.add(errorPanel);
-        
-        container.repaint();
+                errorLabel = panelGenerator.errorLabel();
+
+                errorPanel.add(errorLabel);
+
+                loadTextPanel.add(loadTextField);
+
+                container.add(loadPanel);
+                container.add(loadTextPanel);
+                container.add(errorPanel);
+
+                frame.validate();
+                frame.repaint();
+            }
+        });
     }
 
     public void setNewGameScreen()
     {
-        removeCurrentScreen();
+        SwingUtilities.invokeLater(new Runnable() 
+        {
+            @Override
+            public void run()
+            {
+                removeCurrentScreen();
         
-        newGamePanel = panelGenerator.newGamePanel();
-        newGameList = panelGenerator.newGameListPanel();
-        newGameNumRooms = panelGenerator.newGameNumRoomsPanel();
-        
-        classList = panelGenerator.classList();
-        numRoomSpinner = panelGenerator.NumRoomsSpinner();
-        
-        newGameList.add(classList);
-        newGameNumRooms.add(numRoomSpinner);
-        
-        container.add(newGamePanel);
-        container.add(newGameList);
-        container.add(newGameNumRooms);
-        
-        frame.validate();
-        frame.repaint();
+                newGamePanel = panelGenerator.newGamePanel();
+                newGameList = panelGenerator.newGameListPanel();
+                newGameNumRooms = panelGenerator.newGameNumRoomsPanel();
+
+                classList = panelGenerator.classList();
+                numRoomSpinner = panelGenerator.NumRoomsSpinner();
+
+                newGameList.add(classList);
+                newGameNumRooms.add(numRoomSpinner);
+
+                container.add(newGamePanel);
+                container.add(newGameList);
+                container.add(newGameNumRooms);
+
+                frame.validate();
+                frame.repaint();
+            }
+        });
     }
 
     public void updateMainLabel(String text)
     {
-        mainLabel.setText(text);
+        SwingUtilities.invokeLater(new Runnable() 
+        {
+            @Override
+            public void run()
+            {
+                mainLabel.setText(text);
+            }
+        });
     }
     
     public String getLoadTextField()
@@ -154,6 +193,13 @@ public class GUI
     
     public void updateErrorLabel(String text)
     {
-        errorLabel.setText(text);
+        SwingUtilities.invokeLater(new Runnable() 
+        {
+            @Override
+            public void run()
+            {
+                errorLabel.setText(text);
+            }
+        });
     }
 }
