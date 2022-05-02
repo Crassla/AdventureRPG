@@ -5,7 +5,6 @@
 package RPG.GUI;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
@@ -17,7 +16,6 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
@@ -64,18 +62,16 @@ public class GamePanels
         panel.setBackground(Color.black);
 
         JButton startButton = new JButton("NEW GAME");
-        startButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         startButton.setBackground(Color.black);
-        startButton.setForeground(Color.black);
+        startButton.setForeground(Color.white);
+        startButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         startButton.setFocusPainted(false);
-        startButton.setOpaque(true);
 
         JButton loadButton = new JButton("LOAD GAME");
         loadButton.setBackground(Color.black);
-        loadButton.setForeground(Color.black);
+        loadButton.setForeground(Color.white);
         loadButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         loadButton.setFocusPainted(false);
-        loadButton.setOpaque(true);
 
         startButton.addActionListener(handlerGenerator.newGameHandler());
         loadButton.addActionListener(handlerGenerator.loadGameHandler());
@@ -142,15 +138,14 @@ public class GamePanels
     {
         JPanel panel = new JPanel();
 
-        JButton textButton = new JButton("ENTER");
+        JButton textButton = new JButton("Enter previous name:");
         textButton.setBackground(Color.black);
-        textButton.setForeground(Color.black);
+        textButton.setForeground(Color.white);
         textButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         textButton.setFocusPainted(false);
 
         textButton.addActionListener(handlerGenerator.loadGameTextFieldHandler());
 
-        panel.setBounds(100, 500, 600, 250);
         panel.setBackground(Color.black);
 
         panel.add(textButton);
@@ -161,12 +156,9 @@ public class GamePanels
     public JTextField loadTextField()
     {
         JTextField textField = new JTextField(20);
-        textField.setBounds(100, 500, 600, 250);
-        textField.setBackground(Color.white);
-        textField.setForeground(Color.black);
+        textField.setBackground(Color.black);
+        textField.setForeground(Color.white);
         textField.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        textField.setText("Enter previous character name here");
-        textField.setBorder(BorderFactory.createLineBorder(Color.white, 3));
 
         return textField;
     }
@@ -263,3 +255,4 @@ public class GamePanels
         return spinner;
     }
 }
+
