@@ -6,13 +6,13 @@ package RPG.GUI;
 
 import java.awt.Color;
 import java.awt.Container;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -24,8 +24,7 @@ public class GUI
     private final JFrame frame;
     private final GamePanels panelGenerator;
     private final Container container;
-    private JPanel titlePanel, startButtonPanel, gamePanel, loadPanel, loadTextPanel,
-            errorPanel, newGamePanel, newGameList, newGameNumRooms, newGameUserName, newGameButtonPanel;
+    private JPanel titleScreenPanel, gameScreenPanel, newGameScreenPanel, loadGameScreenPanel;
     private JTextField loadTextField, newGameTextField;
     private JLabel errorLabel, mainLabel;
     private JList classList;
@@ -46,64 +45,48 @@ public class GUI
         setTitleScreen();
     }
 
+    private JPanel initPanel(JPanel panel)
+    {
+        panel = new JPanel();
+        panel.setBackground(Color.black);
+        panel.setBounds(0, 0, 800, 600);
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        return panel;
+    }
+
     public void setTitleScreen()
     {
-        SwingUtilities.invokeLater(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                removeCurrentScreen();
+        removeCurrentScreen();
 
-                titlePanel = panelGenerator.titalPanel();
-                startButtonPanel = panelGenerator.startButtonPanel();
+        titleScreenPanel = initPanel(titleScreenPanel);
 
-                container.add(titlePanel);
-                container.add(startButtonPanel);
+        titleScreenPanel.add(panelGenerator.titalPanel());
+        titleScreenPanel.add(panelGenerator.startButtonPanel());
 
-                frame.setVisible(true);
-            }
-        });
+        container.add(titleScreenPanel);
+
+        frame.setVisible(true);
     }
 
     private void removeCurrentScreen()
     {
-        if (titlePanel != null)
+        if (titleScreenPanel != null)
         {
-            titlePanel.setVisible(false);
+            titleScreenPanel.setVisible(false);
         }
-        if (startButtonPanel != null)
+        if (gameScreenPanel != null)
         {
-            startButtonPanel.setVisible(false);
+            gameScreenPanel.setVisible(false);
         }
-        if (gamePanel != null)
+        if (newGameScreenPanel != null)
         {
-            gamePanel.setVisible(false);
+            newGameScreenPanel.setVisible(false);
         }
-        if (loadPanel != null)
+        if (loadGameScreenPanel != null)
         {
-            loadPanel.setVisible(false);
+            loadGameScreenPanel.setVisible(false);
         }
-        if (loadTextPanel != null)
-        {
-            loadTextPanel.setVisible(false);
-        }
-        if (errorPanel != null)
-        {
-            errorPanel.setVisible(false);
-        }
-        if (newGamePanel != null)
-        {
-            newGamePanel.setVisible(false);
-        }
-        if (newGameList != null)
-            newGameList.setVisible(false);
-        if (newGameNumRooms != null)
-            newGameNumRooms.setVisible(false);
-        if (newGameUserName != null)
-            newGameUserName.setVisible(false);
-        if (newGameButtonPanel != null)
-            newGameButtonPanel.setVisible(false);
 
         frame.validate();
         frame.repaint();
@@ -111,103 +94,65 @@ public class GUI
 
     public void setGameScreen()
     {
-        SwingUtilities.invokeLater(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                removeCurrentScreen();
+        removeCurrentScreen();
 
-                gamePanel = panelGenerator.gamePanel();
-                mainLabel = panelGenerator.mainLabel();
+        gameScreenPanel = initPanel(gameScreenPanel);
 
-                gamePanel.add(mainLabel);
+        mainLabel = panelGenerator.mainLabel();
 
-                mainLabel.setText("LOADED INTO GAME");
+        gameScreenPanel.add(panelGenerator.gamePanel());
+        gameScreenPanel.add(mainLabel);
 
-                container.add(gamePanel);
+        mainLabel.setText("LOADED INTO GAME");
 
-                frame.validate();
-                frame.repaint();
-            }
-        });
+        container.add(gameScreenPanel);
+
+        frame.validate();
+        frame.repaint();
     }
 
     public void setLoadScreen()
     {
-        SwingUtilities.invokeLater(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                removeCurrentScreen();
-                
-                loadPanel = panelGenerator.loadGamePanel();
-                errorPanel = panelGenerator.errorPanel();
-                loadTextPanel = panelGenerator.loadGameTextPanel();
+        removeCurrentScreen();
 
-                loadTextField = panelGenerator.loadTextField();
+        loadGameScreenPanel = initPanel(loadGameScreenPanel);
 
-                errorLabel = panelGenerator.errorLabel();
+        loadTextField = panelGenerator.loadTextField();
+        errorLabel = panelGenerator.errorLabel();
 
-                errorPanel.add(errorLabel);
+        loadGameScreenPanel.add(panelGenerator.loadGamePanel());
+        loadGameScreenPanel.add(panelGenerator.loadGameTextPanel().add(loadTextField));
+        loadGameScreenPanel.add(panelGenerator.errorPanel().add(errorLabel));
 
-                loadTextPanel.add(loadTextField);
+        container.add(loadGameScreenPanel);
 
-                container.add(loadPanel);
-                container.add(loadTextPanel);
-                container.add(errorPanel);
-
-                container.repaint();
-            }
-        });
+        container.repaint();
     }
 
     public void setNewGameScreen()
     {
-        SwingUtilities.invokeLater(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                removeCurrentScreen();
+        removeCurrentScreen();
 
-                newGamePanel = panelGenerator.newGamePanel();
-                newGameList = panelGenerator.newGameListPanel();
-                newGameNumRooms = panelGenerator.newGameNumRoomsPanel();
-                newGameUserName = panelGenerator.newGameUserNamePanel();
-                newGameButtonPanel = panelGenerator.newGameEnterPanel();
+        newGameScreenPanel = initPanel(newGameScreenPanel);
 
-                classList = panelGenerator.classList();
-                numRoomSpinner = panelGenerator.NumRoomsSpinner();
-                newGameTextField = panelGenerator.newGameTextField();
+        classList = panelGenerator.classList();
+        numRoomSpinner = panelGenerator.NumRoomsSpinner();
+        newGameTextField = panelGenerator.newGameTextField();
 
-                newGameList.add(classList);
-                newGameNumRooms.add(numRoomSpinner);
-                newGameUserName.add(newGameTextField);
+        newGameScreenPanel.add(panelGenerator.newGamePanel());
+        newGameScreenPanel.add(panelGenerator.newGameListPanel().add(classList));
+        newGameScreenPanel.add(panelGenerator.newGameNumRoomsPanel().add(numRoomSpinner));
+        newGameScreenPanel.add(panelGenerator.newGameUserNamePanel().add(newGameTextField));
+        newGameScreenPanel.add(panelGenerator.newGameEnterPanel());
 
-                container.add(newGamePanel);
-                container.add(newGameList);
-                container.add(newGameNumRooms);
-                container.add(newGameUserName);
-                container.add(newGameButtonPanel);
+        container.add(newGameScreenPanel);
 
-                frame.validate();
-                frame.repaint();
-            }
-        });
+        container.repaint();
     }
 
     public void updateMainLabel(String text)
     {
-        SwingUtilities.invokeLater(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                mainLabel.setText(text);
-            }
-        });
+        mainLabel.setText(text);
     }
 
     public String getLoadTextField()
@@ -217,13 +162,6 @@ public class GUI
 
     public void updateErrorLabel(String text)
     {
-        SwingUtilities.invokeLater(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                errorLabel.setText(text);
-            }
-        });
+        errorLabel.setText(text);
     }
 }

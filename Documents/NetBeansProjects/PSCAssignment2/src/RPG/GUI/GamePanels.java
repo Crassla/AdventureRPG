@@ -151,29 +151,29 @@ public class GamePanels
 
     public JPanel newGameEnterPanel()
     {
-        JPanel panel = new JPanel();
+        JPanel ngpanel = new JPanel();
 
-        panel.setBounds(100, 480, 600, 250);
-        panel.setBackground(Color.black);
+        ngpanel.setBounds(100, 480, 600, 250);
+        ngpanel.setBackground(Color.black);
 
         Font font = new Font("Times New Roman", Font.BOLD, 20);
 
-        JButton button = new JButton("ENTER");
+        JButton newGameButton = new JButton("ENTER");
 
-        button.setBackground(Color.white);
-        button.setForeground(Color.black);
-        button.setFont(font);
+        newGameButton.setBackground(Color.white);
+        newGameButton.setForeground(Color.black);
+        newGameButton.setFont(font);
 
-        button.addActionListener(handlerGenerator.createGameHandler());
+        newGameButton.addActionListener(handlerGenerator.createGameHandler());
         
-        panel.add(button);
+        ngpanel.add(newGameButton);
         
-        button.setVisible(true);
-        panel.setVisible(true);
+        newGameButton.setVisible(true);
+        ngpanel.setVisible(true);
         
-        panel.repaint();
+        ngpanel.repaint();
 
-        return panel;
+        return ngpanel;
     }
 
     public JPanel loadGameTextPanel()
@@ -188,7 +188,7 @@ public class GamePanels
 
         textButton.addActionListener(handlerGenerator.loadGameTextFieldHandler());
 
-        panel.setBounds(100, 500, 600, 250);
+        panel.setBounds(100, 400, 600, 250);
         panel.setBackground(Color.black);
 
         panel.add(textButton);
@@ -207,38 +207,42 @@ public class GamePanels
 
     public JPanel errorPanel()
     {
-        JPanel gamePanel = new JPanel();
-        gamePanel.setBounds(100, 350, 600, 250);
-        gamePanel.setBackground(Color.black);
+        JPanel errorPanel = new JPanel();
+        errorPanel.setBounds(100, 300, 600, 250);
+        errorPanel.setBackground(Color.black);
 
-        return gamePanel;
+        return errorPanel;
     }
 
     public JTextField loadTextField()
     {
-        JTextField textField = new JTextField(20);
-        textField.setBounds(100, 500, 600, 250);
-        textField.setBackground(Color.white);
-        textField.setForeground(Color.black);
-        textField.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        textField.setText("Enter previous character name here");
-        textField.setBorder(BorderFactory.createLineBorder(Color.white, 3));
+        Font font = new Font("Times New Roman", Font.BOLD, 20);
+        
+        JTextField loadTextField = new JTextField(30);
+        loadTextField.setBounds(100, 500, 600, 250);
+        loadTextField.setBackground(Color.black);
+        loadTextField.setForeground(Color.white);
+        loadTextField.setFont(font);
+        
+        Border border1 = BorderFactory.createLineBorder(Color.white);
+        TitledBorder border2 = BorderFactory.createTitledBorder(border1, "Enter previous character name here", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION, font, Color.white);
+        loadTextField.setBorder(border2);        
 
-        return textField;
+        return loadTextField;
     }
 
     public JTextField newGameTextField()
     {
-        JTextField textField = new JTextField(20);
+        JTextField newTextField = new JTextField(20);
         Font font = new Font("Times New Roman", Font.BOLD, 20);
-        textField.setBackground(Color.black);
-        textField.setForeground(Color.white);
-        textField.setFont(font);
+        newTextField.setBackground(Color.black);
+        newTextField.setForeground(Color.white);
+        newTextField.setFont(font);
         Border border1 = BorderFactory.createLineBorder(Color.white);
         TitledBorder border2 = BorderFactory.createTitledBorder(border1, "Enter character name here", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION, font, Color.white);
-        textField.setBorder(border2);
+        newTextField.setBorder(border2);
 
-        return textField;
+        return newTextField;
     }
 
     public JLabel errorLabel()
