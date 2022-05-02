@@ -24,8 +24,8 @@ public class GUI
     private final JFrame frame;
     private final GamePanels panelGenerator;
     private final Container container;
-    private JPanel titleScreenPanel, gameScreenPanel, newGameScreenPanel, loadGameScreenPanel;
-    private JTextField loadTextField, newGameTextField;
+    private JPanel titleScreen, loadGameScreen, newGameScreen, mainGameScreen;
+    private JTextField loadTextField;
     private JLabel errorLabel, mainLabel;
     private JList classList;
     private JSpinner numRoomSpinner;
@@ -41,13 +41,14 @@ public class GUI
         frame.setLayout(null);
 
         container = frame.getContentPane();
-
-        setTitleScreen();
+        
+        setTitleScreen(); 
     }
 
     private JPanel initPanel(JPanel panel)
     {
         panel = new JPanel();
+
         panel.setBackground(Color.black);
         panel.setBounds(0, 0, 800, 600);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -59,33 +60,33 @@ public class GUI
     {
         removeCurrentScreen();
 
-        titleScreenPanel = initPanel(titleScreenPanel);
+        titleScreen = initPanel(titleScreen);
 
-        titleScreenPanel.add(panelGenerator.titalPanel());
-        titleScreenPanel.add(panelGenerator.startButtonPanel());
+        titleScreen.add(panelGenerator.titalPanel());
+        titleScreen.add(panelGenerator.startButtonPanel());
 
-        container.add(titleScreenPanel);
+        container.add(titleScreen);
 
         frame.setVisible(true);
     }
 
     private void removeCurrentScreen()
     {
-        if (titleScreenPanel != null)
+        if (titleScreen != null)
         {
-            titleScreenPanel.setVisible(false);
+            titleScreen.setVisible(false);
         }
-        if (gameScreenPanel != null)
+        if (mainGameScreen != null)
         {
-            gameScreenPanel.setVisible(false);
+            mainGameScreen.setVisible(false);
         }
-        if (newGameScreenPanel != null)
+        if (loadGameScreen != null)
         {
-            newGameScreenPanel.setVisible(false);
+            loadGameScreen.setVisible(false);
         }
-        if (loadGameScreenPanel != null)
+        if (newGameScreen != null)
         {
-            loadGameScreenPanel.setVisible(false);
+            newGameScreen.setVisible(false);
         }
 
         frame.validate();
@@ -96,16 +97,15 @@ public class GUI
     {
         removeCurrentScreen();
 
-        gameScreenPanel = initPanel(gameScreenPanel);
+        mainGameScreen = initPanel(mainGameScreen);
 
         mainLabel = panelGenerator.mainLabel();
 
-        gameScreenPanel.add(panelGenerator.gamePanel());
-        gameScreenPanel.add(mainLabel);
+        mainGameScreen.add(panelGenerator.gamePanel().add(mainLabel));
 
-        mainLabel.setText("LOADING INTO GAME");
+        mainLabel.setText("LOADED INTO GAME");
 
-        container.add(gameScreenPanel);
+        container.add(mainGameScreen);
 
         frame.validate();
         frame.repaint();
@@ -115,39 +115,42 @@ public class GUI
     {
         removeCurrentScreen();
 
-        loadGameScreenPanel = initPanel(loadGameScreenPanel);
+        loadGameScreen = initPanel(loadGameScreen);
 
         loadTextField = panelGenerator.loadTextField();
+
         errorLabel = panelGenerator.errorLabel();
+        
+        JPanel loadTextPanel = panelGenerator.loadGameTextPanel();
+        loadTextPanel.add(loadTextField);
+        
+        loadGameScreen.add(panelGenerator.loadGamePanel());
+        loadGameScreen.add(panelGenerator.errorPanel().add(errorLabel));
+        loadGameScreen.add(loadTextPanel);
 
-        loadGameScreenPanel.add(panelGenerator.loadGamePanel());
-        loadGameScreenPanel.add(panelGenerator.loadGameTextPanel().add(loadTextField));
-        loadGameScreenPanel.add(panelGenerator.errorPanel().add(errorLabel));
+        container.add(loadGameScreen);
 
-        container.add(loadGameScreenPanel);
-
-        container.repaint();
+        frame.validate();
+        frame.repaint();
     }
 
     public void setNewGameScreen()
     {
         removeCurrentScreen();
-
-        newGameScreenPanel = initPanel(newGameScreenPanel);
-
+        
+        newGameScreen = initPanel(newGameScreen);  
+        
         classList = panelGenerator.classList();
         numRoomSpinner = panelGenerator.NumRoomsSpinner();
-        newGameTextField = panelGenerator.newGameTextField();
 
-        newGameScreenPanel.add(panelGenerator.newGamePanel());
-        newGameScreenPanel.add(panelGenerator.newGameListPanel().add(classList));
-        newGameScreenPanel.add(panelGenerator.newGameNumRoomsPanel().add(numRoomSpinner));
-        newGameScreenPanel.add(panelGenerator.newGameUserNamePanel().add(newGameTextField));
-        newGameScreenPanel.add(panelGenerator.newGameEnterPanel());
+        newGameScreen.add(panelGenerator.newGamePanel());
+        newGameScreen.add(panelGenerator.newGameListPanel().add(classList));
+        newGameScreen.add(panelGenerator.newGameNumRoomsPanel().add(numRoomSpinner));
 
-        container.add(newGameScreenPanel);
+        container.add(newGameScreen);
 
-        container.repaint();
+        frame.validate();
+        frame.repaint();
     }
 
     public void updateMainLabel(String text)
