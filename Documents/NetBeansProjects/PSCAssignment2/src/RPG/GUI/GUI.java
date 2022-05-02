@@ -81,6 +81,10 @@ public class GUI
             errorPanel.setVisible(false);
         if (newGamePanel != null)
             newGamePanel.setVisible(false);
+        if (newGameList != null)
+            newGameList.setVisible(false);
+        if (newGameNumRooms != null)
+            newGameNumRooms.setVisible(false);
 
         frame.validate();
         frame.repaint();
