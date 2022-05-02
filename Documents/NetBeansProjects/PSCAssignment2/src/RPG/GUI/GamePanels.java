@@ -5,7 +5,6 @@
 package RPG.GUI;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
@@ -17,7 +16,6 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
@@ -148,7 +146,6 @@ public class GamePanels
 
         textButton.addActionListener(handlerGenerator.loadGameTextFieldHandler());
 
-        panel.setBounds(100, 500, 600, 250);
         panel.setBackground(Color.black);
 
         panel.add(textButton);
@@ -159,7 +156,6 @@ public class GamePanels
     public JTextField loadTextField()
     {
         JTextField textField = new JTextField(20);
-        textField.setBounds(100, 500, 600, 250);
         textField.setBackground(Color.black);
         textField.setForeground(Color.white);
         textField.setFont(new Font("Times New Roman", Font.BOLD, 20));
