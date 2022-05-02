@@ -117,8 +117,7 @@ public class GUI
         container.add(loadTextPanel);
         container.add(errorPanel);
         
-        frame.validate();
-        frame.repaint();
+        container.repaint();
     }
 
     public void setNewGameScreen()
