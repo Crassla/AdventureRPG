@@ -13,12 +13,12 @@ import java.awt.event.ActionListener;
  *
  * @author alex
  */
-public class Handlers
+public class Controller
 {
 
     private GUI gui;
 
-    public Handlers(GUI gui)
+    public Controller(GUI gui)
     {
         this.gui = gui;
     }

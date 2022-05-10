@@ -6,6 +6,8 @@ package RPG.GUI;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,7 +24,7 @@ public class GUI
 {
 
     private final JFrame frame;
-    private final GamePanels panelGenerator;
+    private final PanelGenerator panelGenerator;
     private final Container container;
     private JPanel titleScreen, loadGameScreen, newGameScreen, mainGameScreen;
     private JTextField loadTextField;
@@ -33,16 +35,15 @@ public class GUI
     public GUI()
     {
         frame = new JFrame();
-        panelGenerator = new GamePanels(this);
+        panelGenerator = new PanelGenerator(this);
 
         frame.setSize(800, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setBackground(Color.black);
-        frame.setLayout(null);
 
         container = frame.getContentPane();
-        
-        setTitleScreen(); 
+
+        setTitleScreen();
     }
 
     private JPanel initPanel(JPanel panel)
@@ -61,7 +62,8 @@ public class GUI
         removeCurrentScreen();
 
         titleScreen = initPanel(titleScreen);
-
+        
+        titleScreen.add(Box.createVerticalStrut(50));
         titleScreen.add(panelGenerator.titalPanel());
         titleScreen.add(panelGenerator.startButtonPanel());
 
@@ -120,15 +122,19 @@ public class GUI
         loadTextField = panelGenerator.loadTextField();
 
         errorLabel = panelGenerator.errorLabel();
-        
+
         JPanel loadTextPanel = panelGenerator.loadGameTextPanel();
         loadTextPanel.add(loadTextField);
-        
+
+        loadGameScreen.add(Box.createVerticalStrut(50));
         loadGameScreen.add(panelGenerator.loadGamePanel());
-        loadGameScreen.add(panelGenerator.errorPanel().add(errorLabel));
+        loadGameScreen.add(errorLabel);
+        loadGameScreen.add(Box.createVerticalStrut(50));
         loadGameScreen.add(loadTextPanel);
 
         container.add(loadGameScreen);
+
+        loadGameScreen.setVisible(true);
 
         frame.validate();
         frame.repaint();
@@ -137,17 +143,23 @@ public class GUI
     public void setNewGameScreen()
     {
         removeCurrentScreen();
-        
-        newGameScreen = initPanel(newGameScreen);  
-        
+
+        newGameScreen = initPanel(newGameScreen);
+
         classList = panelGenerator.classList();
         numRoomSpinner = panelGenerator.NumRoomsSpinner();
 
+        newGameScreen.add(Box.createVerticalStrut(50));
         newGameScreen.add(panelGenerator.newGamePanel());
         newGameScreen.add(panelGenerator.newGameListPanel().add(classList));
+        newGameScreen.add(Box.createVerticalStrut(50));
         newGameScreen.add(panelGenerator.newGameNumRoomsPanel().add(numRoomSpinner));
+        newGameScreen.add(Box.createVerticalStrut(10));
+        newGameScreen.add(panelGenerator.newGameButton());
 
         container.add(newGameScreen);
+
+        newGameScreen.setVisible(true);
 
         frame.validate();
         frame.repaint();

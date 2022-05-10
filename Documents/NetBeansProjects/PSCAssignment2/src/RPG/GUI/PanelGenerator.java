@@ -25,16 +25,16 @@ import javax.swing.border.TitledBorder;
  *
  * @author alex
  */
-public class GamePanels
+public class PanelGenerator
 {
 
     private GUI gui;
-    private final Handlers handlerGenerator;
+    private final Controller handlerGenerator;
 
-    public GamePanels(GUI gui)
+    public PanelGenerator(GUI gui)
     {
         this.gui = gui;
-        handlerGenerator = new Handlers(gui);
+        handlerGenerator = new Controller(gui);
     }
 
     public JPanel titalPanel()
@@ -42,7 +42,6 @@ public class GamePanels
         JPanel panel = new JPanel();
         JLabel label;
 
-        panel.setBounds(100, 100, 600, 150);
         panel.setBackground(Color.black);
 
         label = new JLabel("DUNGEON RPG");
@@ -58,7 +57,6 @@ public class GamePanels
     {
         JPanel panel = new JPanel();
 
-        panel.setBounds(300, 400, 200, 100);
         panel.setBackground(Color.black);
 
         JButton startButton = new JButton("NEW GAME");
@@ -86,7 +84,6 @@ public class GamePanels
         JPanel panel = new JPanel();
         JLabel label;
 
-        panel.setBounds(100, 100, 600, 150);
         panel.setBackground(Color.black);
 
         label = new JLabel("LOAD PREVIOUS GAME");
@@ -94,6 +91,9 @@ public class GamePanels
         label.setFont(new Font("Times New Roman", Font.PLAIN, 50));
 
         panel.add(label);
+
+        label.setVisible(true);
+        panel.setVisible(true);
 
         return panel;
     }
@@ -103,7 +103,6 @@ public class GamePanels
         JPanel panel = new JPanel();
         JLabel label;
 
-        panel.setBounds(100, 100, 600, 100);
         panel.setBackground(Color.black);
 
         label = new JLabel("CREATE NEW GAME");
@@ -117,28 +116,25 @@ public class GamePanels
 
     public JPanel newGameListPanel()
     {
+        JPanel panel = new JPanel();
+        panel.setBackground(Color.black);
 
-        JPanel gamePanel = new JPanel();
-        gamePanel.setBounds(100, 200, 600, 250);
-        gamePanel.setBackground(Color.black);
-
-        return gamePanel;
+        return panel;
     }
 
     public JPanel newGameNumRoomsPanel()
     {
-        JPanel gamePanel = new JPanel();
-        gamePanel.setBounds(105, 325, 600, 250);
-        gamePanel.setBackground(Color.black);
+        JPanel panel = new JPanel();
+        panel.setBackground(Color.black);
 
-        return gamePanel;
+        return panel;
     }
 
     public JPanel loadGameTextPanel()
     {
         JPanel panel = new JPanel();
 
-        JButton textButton = new JButton("Enter previous name:");
+        JButton textButton = new JButton("ENTER");
         textButton.setBackground(Color.black);
         textButton.setForeground(Color.white);
         textButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
@@ -150,12 +146,16 @@ public class GamePanels
 
         panel.add(textButton);
 
+        textButton.setVisible(true);
+        panel.setVisible(true);
+
         return panel;
     }
 
     public JTextField loadTextField()
     {
         JTextField textField = new JTextField(20);
+        textField.setText("Enter Previous Name Here");
         textField.setBackground(Color.black);
         textField.setForeground(Color.white);
         textField.setFont(new Font("Times New Roman", Font.BOLD, 20));
@@ -166,7 +166,6 @@ public class GamePanels
     public JPanel gamePanel()
     {
         JPanel gamePanel = new JPanel();
-        gamePanel.setBounds(100, 100, 600, 250);
         gamePanel.setBackground(Color.black);
 
         return gamePanel;
@@ -175,7 +174,6 @@ public class GamePanels
     public JPanel errorPanel()
     {
         JPanel gamePanel = new JPanel();
-        gamePanel.setBounds(100, 350, 600, 250);
         gamePanel.setBackground(Color.black);
 
         return gamePanel;
@@ -184,10 +182,10 @@ public class GamePanels
     public JLabel errorLabel()
     {
         JLabel label = new JLabel();
+        
         label.setBackground(Color.black);
         label.setForeground(Color.red);
         label.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        label.setBorder(null);
 
         return label;
     }
@@ -226,6 +224,8 @@ public class GamePanels
 
         list.setBorder(border2);
 
+        list.setVisible(true);
+
         return list;
     }
 
@@ -234,13 +234,9 @@ public class GamePanels
         Font font = new Font("Times New Roman", Font.PLAIN, 20);
 
         JSpinner spinner = new JSpinner(new SpinnerNumberModel(1, 1, 20, 1));
-        spinner.getEditor().getComponent(0).setBackground(Color.black);
-        spinner.getEditor().getComponent(0).setBackground(Color.white);
-        spinner.getEditor().getComponent(0).setFont(font);
-
+        
         JComponent editor = spinner.getEditor();
         JFormattedTextField tf = ((JSpinner.DefaultEditor) editor).getTextField();
-        tf.setColumns(18);
         tf.setFont(font);
         tf.setBackground(Color.black);
         tf.setForeground(Color.white);
@@ -251,7 +247,31 @@ public class GamePanels
         TitledBorder border2 = BorderFactory.createTitledBorder(border1, "Chose Number of Rooms", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION, font, Color.white);
 
         tf.setBorder(border2);
+        spinner.setBackground(Color.black);
+        spinner.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 20));
 
         return spinner;
+    }
+
+    public JPanel newGameButton()
+    {
+        JPanel panel = new JPanel();
+
+        JButton textButton = new JButton("ENTER");
+        textButton.setBackground(Color.black);
+        textButton.setForeground(Color.white);
+        textButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        textButton.setFocusPainted(false);
+
+        textButton.addActionListener(handlerGenerator.createGameHandler());
+
+        panel.setBackground(Color.black);
+
+        panel.add(textButton);
+
+        textButton.setVisible(true);
+        panel.setVisible(true);
+
+        return panel;
     }
 }
